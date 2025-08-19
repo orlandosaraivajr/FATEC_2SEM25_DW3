@@ -58,3 +58,59 @@ for letra in s2:
     if letra == 'a' or letra == 'e' or letra == 'i' or letra == 'o' or letra == 'u':
         resultado_s2 = True
 print(resultado_s2)
+
+'''
+Lists are mutable sequences, typically 
+used to store collections of homogeneous 
+items (where the precise degree of similarity 
+will vary by application).
+'''
+lista = []
+lista.append('batata')
+lista.append('arroz')
+lista.append('pão')
+for x in range(3):
+    lista.append(x)
+
+print(lista)
+# Percorrer a lista acima e mostrar apenas os itens de mercado
+# ignorar os números
+print(30 * '*')
+for item in lista:
+    if isinstance(item, str):
+        print(item)
+
+print(30 * '*')
+for item in lista:
+    if type(item) is str:
+        print(item)
+
+print(30 * '*')
+for item in lista:
+    x = str(item)
+    if not x.isnumeric():
+        print(x)
+
+'''
+
+Tuples are immutable sequences, 
+typically used to store collections 
+of heterogeneous data
+'''
+registro = ('Fatec','Araras')
+type(registro)
+
+lista.append('batata')
+lista.append('arroz')
+lista.append('pão')
+lista.append('arroz')
+
+print(lista)
+# ['batata', 'arroz', 'pão', 0, 1, 2, 'batata', 'arroz', 'pão', 'arroz']
+# Remover todos os elementos duplicados da lista acima
+l1 = []
+for x in lista:
+    if not x in l1:
+        l1.append(x)
+
+l2 = list(set(lista)) # Fiz uso da estrutura set (conjunto)
