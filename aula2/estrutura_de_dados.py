@@ -114,3 +114,53 @@ for x in lista:
         l1.append(x)
 
 l2 = list(set(lista)) # Fiz uso da estrutura set (conjunto)
+'''
+Return a new set or frozenset object whose elements are 
+taken from iterable. 
+The elements of a set must be hashable. 
+To represent sets of sets, the inner sets 
+must be frozenset objects. 
+If iterable is not specified, a new empty set is returned.
+'''
+conjunto1 = set(range(1,10))
+conjunto2 = set(range(6,16))
+conjunto3 = set(range(7,10))
+conjunto4 = set([11,12])
+
+for elemento in conjunto1:
+    print(elemento)
+
+conjunto3.issubset(conjunto2) # True
+conjunto3.issubset(conjunto1) # True
+conjunto4.issubset(conjunto2) # True
+conjunto4.issubset(conjunto1) # False
+
+conjunto1.union(conjunto2) # {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+conjunto2.difference(conjunto1) # {10, 11, 12, 13, 14, 15}
+conjunto1.difference(conjunto2) # {1, 2, 3, 4, 5}
+conjunto1.intersection(conjunto2) # {8, 9, 6, 7}
+
+'''
+A mapping object maps hashable values to arbitrary objects.
+Mappings are mutable objects. 
+There is currently only one standard mapping type, 
+the dictionary. 
+(For other containers see the built-in list, set, and 
+tuple classes, and the collections module.)
+'''
+
+fatec = {}
+fatec['orlando'] = 'DW3'
+fatec['esdras'] = 'Tecnicas de Programação 2'
+fatec['fabio'] = "Álgebra Linear"
+
+fatec['orlando'] # 'DW3'
+
+list(fatec.keys()) # Lista de chaves
+list(fatec.values()) # lista de valores
+# o método get
+fatec.get('orlando') # 'DW3'
+fatec.get('Orlando') # None
+fatec.get('XYZ','Não tenho esse professor') # Não tenho....
+fatec.get('orlando','Não tenho esse professor') # DW3
+
