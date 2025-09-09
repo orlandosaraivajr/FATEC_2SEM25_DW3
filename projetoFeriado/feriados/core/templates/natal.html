@@ -5,6 +5,10 @@
         <title>Feriado de Natal</title>
     </head>
     <body>
-        <h1>Não é natal</h1>
+        {%if natal%}
+            <h1>Feliz Natal</h1>
+        {% else %}
+            <h1>Não é Natal</h1>
+        {% endif %}
     </body>
 </html>
