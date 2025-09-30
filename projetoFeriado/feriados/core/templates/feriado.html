@@ -2,13 +2,13 @@
 <html lang="pt_br">
     <head>
         <meta charset="UTF-8">
-        <title>Feriado de Natal</title>
+        <title>Feriados</title>
     </head>
     <body>
-        {%if natal%}
-            <h1>Feliz Natal</h1>
+        {%if feriado%}
+            <h1>{{nome}}</h1>
         {% else %}
-            <h1>Não é Natal</h1>
+            <h1>Não é Feriado</h1>
         {% endif %}
     </body>
 </html>

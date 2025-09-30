@@ -7,3 +7,5 @@ class FeriadoModel(models.Model):
     modificado_em = models.DateTimeField(verbose_name='modificado em',
                                          auto_now=True, auto_now_add=False)
 
+    def __str__(self):
+        return self.nome
