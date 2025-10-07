@@ -38,7 +38,7 @@ class NaoEhFeriadoTest(TestCase):
 
 class EhFeriadoTest(TestCase):
     def setUp(self):
-        FeriadoModel.objects.create(nome='Dia do TDD',dia=29,mes=9)
+        FeriadoModel.objects.create(nome='Dia do TDD',dia=6,mes=10)
         self.resp = self.client.get('/')
     
     def test_200_response(self):
@@ -46,3 +46,17 @@ class EhFeriadoTest(TestCase):
     
     def test_template(self):
         self.assertContains(self.resp, 'Dia do TDD') 
+    
+
+from core.forms import FeriadoForm
+
+class FeriadoFormTest(TestCase):
+    def test_form_has_fields(self):
+        form = FeriadoForm()
+        expected = ['nome', 'dia', 'mes']
+        self.assertSequenceEqual(expected, list(form.fields))
+
+    def test_must_be_capitalized(self):
+        form = FeriadoForm({'nome':'dia de são nunca'})
+        form.is_valid()
+        self.assertEqual('DIA DE SÃO NUNCA', form.cleaned_data['nome'])
