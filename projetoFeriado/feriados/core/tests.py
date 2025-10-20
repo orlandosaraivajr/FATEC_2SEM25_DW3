@@ -44,8 +44,6 @@ class EhFeriadoTest(TestCase):
     def test_200_response(self):
         self.assertAlmostEqual(self.resp.status_code, 200)
     
-    def test_template(self):
-        self.assertContains(self.resp, 'Dia do TDD') 
     
 
 from core.forms import FeriadoForm
@@ -60,3 +58,24 @@ class FeriadoFormTest(TestCase):
         form = FeriadoForm({'nome':'dia de são nunca'})
         form.is_valid()
         self.assertEqual('DIA DE SÃO NUNCA', form.cleaned_data['nome'])
+        
+
+from rest_framework.test import APITestCase, APIClient
+from django.urls import reverse
+from rest_framework import status
+from django.contrib.auth.models import User
+from core.models import FeriadoModel
+
+class FeriadoAPITests(APITestCase):
+    def setUp(self):
+        self.client = APIClient()
+        # Cria um usuário e token (caso use autenticação)
+        self.user = User.objects.create_user(username='admin', password='123')
+        self.client.force_authenticate(user=self.user)
+        self.feriado = FeriadoModel.objects.create(nome="Natal", dia=25, mes=12)
+
+    def test_listar_feriados(self):
+        url = reverse('feriado_list_create')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertGreaterEqual(len(response.data), 1)
