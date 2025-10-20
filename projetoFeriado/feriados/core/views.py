@@ -12,3 +12,10 @@ def feriados(request):
     nome_feriado = qs.first().nome
     contexto = {'feriado':True, 'nome':nome_feriado}
     return render(request, 'feriado.html', contexto)
+
+from django.http import JsonResponse
+from .models import FeriadoModel
+
+def listar_feriados_json(request):
+    feriados = FeriadoModel.objects.all().values('id', 'nome', 'dia', 'mes')
+    return JsonResponse(list(feriados), safe=False)
